@@ -1,0 +1,121 @@
+[
+    {
+        "type": "github",
+        "name": "capstone",
+        "owner": "capstone-engine",
+        "repo": "capstone",
+        "rev": "6.0.0-Alpha1",
+        "sha256": "sha256-9nFGXpVj+oWIfuOiXXVJodzc8G1hirSiVCMq6dxFV9o="
+    },
+    {
+        "type": "github",
+        "name": "glfw",
+        "owner": "glfw",
+        "repo": "glfw",
+        "rev": "3.3.8",
+        "sha256": "sha256-4+H0IXjAwbL5mAWfsIVhW0BSJhcWjkQx4j2TrzZ3aIo="
+    },
+    {
+        "type": "github",
+        "name": "freetype",
+        "owner": "freetype",
+        "repo": "freetype",
+        "rev": "VER-2-13-3",
+        "sha256": "sha256-4l90lDtpgm5xlh2m7ifrqNy373DTRTULRkAzicrM93c="
+    },
+    {
+        "type": "github",
+        "name": "zstd",
+        "owner": "facebook",
+        "repo": "zstd",
+        "rev": "v1.5.7",
+        "sha256": "sha256-tNFWIT9ydfozB8dWcmTMuZLCQmQudTFJIkSr0aG7S44="
+    },
+    {
+        "type": "github",
+        "name": "ImGui",
+        "owner": "ocornut",
+        "repo": "imgui",
+        "rev": "v1.92.1-docking",
+        "sha256": "sha256-xxT9xy3S5nh9qMjK+cHnaWJnGGO64a1u7eSwvQBLcP2="
+    },
+    {
+        "type": "github",
+        "name": "nfd",
+        "owner": "btzy",
+        "repo": "nativefiledialog-extended",
+        "rev": "v1.2.1",
+        "sha256": "sha256-GwT42lMZAAKSJpUJE6MYOpSLKUD5o9nSe9lcsoeXgJY="
+    },
+    {
+        "type": "github",
+        "name": "PPQSort",
+        "owner": "GabTux",
+        "repo": "PPQSort",
+        "rev": "1.0.5",
+        "sha256": "sha256-xxT2xy3S5nh9qMjK+aHnaWJnGGO64a1u7eSwvQBLcP2="
+    },
+    {
+        "type": "github",
+        "name": "json",
+        "owner": "nlohmann",
+        "repo": "json",
+        "rev": "v3.12.0",
+        "sha256": "sha256-4+H0IXjAwbL5mAWfsIVhW0BSJhcWjkQx4j2TrzZ3aIo="
+    },
+    {
+        "type": "github",
+        "name": "md4c",
+        "owner": "mity",
+        "repo": "md4c",
+        "rev": "release-0.5.2",
+        "sha256": "sha256-2/wi7nJugR8X2J9FjXJF1UDnbsozGoO7iR295/KSJng="
+    },
+    {
+        "type": "github",
+        "name": "base64",
+        "owner": "aklomp",
+        "repo": "base64",
+        "rev": "v0.5.2",
+        "sha256": "sha256-tNFWIT9ydfozB8dWcmTMuZLCQmQudTFJIkSr0aG7S44="
+    },
+    {
+        "type": "github",
+        "name": "tidy",
+        "owner": "htacg",
+        "repo": "tidy-html5",
+        "rev": "5.8.0",
+        "sha256": "sha256-vzVWQodwzi3GvC9IcSQniYBsbkJV20iZanF33A0Gpe0="
+    },
+    {
+        "type": "github",
+        "name": "usearch",
+        "owner": "unum-cloud",
+        "repo": "usearch",
+        "rev": "v2.19.1",
+        "sha256": "sha256-k+5+omr+VwZA5QtXJxDkv0dKcMgRRr81zDhTwewdwes="
+    },
+    {
+        "type": "github",
+        "name": "pugixml",
+        "owner": "zeux",
+        "repo": "pugixml",
+        "rev": "v1.15",
+        "sha256": "sha256-t/57lg32KgKPc7qRGQtO/GOwHRqoj78lllSaE/A8Z9Q="
+    },
+    {
+        "type": "github",
+        "name": "libcurl",
+        "owner": "curl",
+        "repo": "curl",
+        "rev": "curl-8_14_1",
+        "sha256": "sha256-xxT2xy3S5nh9qMjK+0HnaWJnGGO64a1u7eSwvQBLcP2="
+    },
+    {
+        "type": "git",
+        "name": "wayland-protocols",
+        "git": "https://gitlab.freedesktop.org/wayland/wayland-protocols.git",
+        "rev": "1.37",
+        "sha256": "sha256-dIaNfQ/znpAdg0/vhVNTfoaG7c8eFrdDTI0QDHcghXU="
+    }
+]

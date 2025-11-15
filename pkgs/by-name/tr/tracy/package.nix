@@ -22,20 +22,31 @@
   libxkbcommon,
   wayland,
   wayland-protocols,
-}:
+}: let
 
-assert withGtkFileSelector -> stdenv.hostPlatform.isLinux;
 
-stdenv.mkDerivation rec {
+  vendorSrcs = import ./vendor.nix {
+    inherit fetchFromGitHub;
+    inherit (builtins) fetchTarball;
+  };
+
+in stdenv.mkDerivation rec {
   pname = if withWayland then "tracy-wayland" else "tracy-glfw";
-  version = "0.11.1";
+  version = "0.13.0";
 
   src = fetchFromGitHub {
     owner = "wolfpld";
     repo = "tracy";
     rev = "v${version}";
-    hash = "sha256-HofqYJT1srDJ6Y1f18h7xtAbI/Gvvz0t9f0wBNnOZK8=";
+    hash = "sha256-xxT1xy3S5nh9qMjK+4HnaWJnGGO64a1u7eSwvQBLcPY=";
   };
+
+
+
+
+
+
+
 
   patches = lib.optional (
     stdenv.hostPlatform.isDarwin && lib.versionOlder stdenv.hostPlatform.darwinMinVersion "11"
@@ -71,7 +82,8 @@ stdenv.mkDerivation rec {
     "-DTRACY_STATIC=off"
   ]
   ++ lib.optional (stdenv.hostPlatform.isLinux && withGtkFileSelector) "-DGTK_FILESELECTOR=ON"
-  ++ lib.optional (stdenv.hostPlatform.isLinux && !withWayland) "-DLEGACY=on";
+  ++ lib.optional (stdenv.hostPlatform.isLinux && !withWayland) "-DLEGACY=on"
+  ++ vendorSrcs;
 
   env.NIX_CFLAGS_COMPILE = toString (
     [ ]
