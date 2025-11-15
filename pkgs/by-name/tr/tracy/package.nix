@@ -45,12 +45,6 @@ in stdenv.mkDerivation rec {
     stdenv.hostPlatform.isDarwin && lib.versionOlder stdenv.hostPlatform.darwinMinVersion "11"
   ) ./dont-use-the-uniformtypeidentifiers-framework.patch;
 
-  postPatch = ''
-    # for imgui, this need to create own directory to get patches.
-
-
-  '';
-
   nativeBuildInputs = [
     cmake
     ninja
@@ -82,7 +76,25 @@ in stdenv.mkDerivation rec {
   ]
   ++ lib.optional (stdenv.hostPlatform.isLinux && withGtkFileSelector) "-DGTK_FILESELECTOR=ON"
   ++ lib.optional (stdenv.hostPlatform.isLinux && !withWayland) "-DLEGACY=on"
-  ++ vendorSrcs;
+  ++ [
+    "-DCPM_DOWNLOAD_LOCATION=${src}/cmake/CPM.cmake"
+    "-DCPM_PackageProject.cmake_SOURCE=${vendorSrcs.package-project-cmake}"
+    "-DCPM_ImGui_SOURCE=/build/deps/imgui"
+    "-DFETCHCONTENT_SOURCE_DIR_PPQSORT=${vendorSrcs.ppqsort}"
+    #"-DFETCHCONTENT_SOURCE_DIR_CAPSTONE=${vendorSrcs.capstone}"
+    "-DFETCHCONTENT_SOURCE_DIR_GLFW=${vendorSrcs.glfw}"
+    "-DFETCHCONTENT_SOURCE_DIR_FREETYPE=${vendorSrcs.freetype}"
+    "-DFETCHCONTENT_SOURCE_DIR_ZSTD=${vendorSrcs.zstd}"
+    "-DFETCHCONTENT_SOURCE_DIR_NFD=${vendorSrcs.nfd}"
+    "-DFETCHCONTENT_SOURCE_DIR_JSON=${vendorSrcs.json}"
+    "-DFETCHCONTENT_SOURCE_DIR_MD4C=${vendorSrcs.md4c}"
+    "-DFETCHCONTENT_SOURCE_DIR_BASE64=${vendorSrcs.base64}"
+    "-DFETCHCONTENT_SOURCE_DIR_TIDY=${vendorSrcs.tidy}"
+    "-DFETCHCONTENT_SOURCE_DIR_USEARCH=${vendorSrcs.usearch}"
+    "-DFETCHCONTENT_SOURCE_DIR_PUGIXML=${vendorSrcs.pugixml}"
+    "-DFETCHCONTENT_SOURCE_DIR_LIBCURL=${vendorSrcs.curl}"
+    "-DFETCHCONTENT_SOURCE_DIR_WAYLAND_PROTOCOLS=${vendorSrcs.wayland-protocols}"
+  ];
 
   env.NIX_CFLAGS_COMPILE = toString (
     [ ]
@@ -92,6 +104,16 @@ in stdenv.mkDerivation rec {
   );
 
   dontUseCmakeBuildDir = true;
+
+  preConfigure = ''
+    # copy sources to the deps.
+    mkdir -p /build/deps
+    cp -r ${vendorSrcs.imgui} /build/deps/imgui
+    cp -r ${vendorSrcs.zstd} /build/deps/ppqsort
+    cp -r ${vendorSrcs.curl} /build/deps/tidy
+    
+    chmod -R +w /build/deps
+  '';
 
   postConfigure = ''
     cmake -B capture/build -S capture $cmakeFlags

@@ -1,5 +1,5 @@
 { fetchFromGitHub, fetchTarball }:
-let
+{
   capstone = fetchFromGitHub {
     owner = "capstone-engine";
     repo = "capstone";
@@ -24,6 +24,7 @@ let
     rev = "v1.5.7";
     hash = "sha256-tNFWIT9ydfozB8dWcmTMuZLCQmQudTFJIkSr0aG7S44=";
   };
+  # requires patches
   imgui = fetchFromGitHub {
     owner = "ocornut";
     repo = "imgui";
@@ -36,6 +37,7 @@ let
     rev = "v1.2.1";
     hash = "sha256-GwT42lMZAAKSJpUJE6MYOpSLKUD5o9nSe9lcsoeXgJY=";
   };
+  # requires patches
   ppqsort = fetchFromGitHub {
     owner = "GabTux";
     repo = "PPQSort";
@@ -60,6 +62,7 @@ let
     rev = "v0.5.2";
     hash = "sha256-tNFWIT9ydfozB8dWcmTMuZLCQmQudTFJIkSr0aG7S44=";
   };
+  # requires patches
   tidy = fetchFromGitHub {
     owner = "htacg";
     repo = "tidy-html5";
@@ -78,7 +81,7 @@ let
     rev = "v1.15";
     hash = "sha256-t/57lg32KgKPc7qRGQtO/GOwHRqoj78lllSaE/A8Z9Q=";
   };
-  libcurl = fetchFromGitHub {
+  curl = fetchFromGitHub {
     owner = "curl";
     repo = "curl";
     rev = "curl-8_14_1";
@@ -88,28 +91,10 @@ let
     url = "https://gitlab.freedesktop.org/wayland/wayland-protocols/-/archive/1.37/wayland-protocols-1.37.tar.gz";
     sha256 = "17j9v2i3v16qyc8pp6zq9hjs6nrzgialc5sasnphg9va2vasyb5g";
   };
-in
-[
-  "-DFETCHCONTENT_FULLY_DISCONNECTED=ON"
-  "-DFETCHCONTENT_QUIET=OFF"
-  "-DCPM_LOCAL_PACKAGES_ONLY=ON"
-  "-DCPM_DOWNLOAD_ALL=ON"
-  "-DFETCHCONTENT_TRY_FIND_PACKAGE_MODE=ALWAYS"
-  "-DFETCHCONTENT_SOURCE_DIR_CAPSTONE=${capstone}"
-  "-DFETCHCONTENT_SOURCE_DIR_GLFW=${glfw}"
-  "-DFETCHCONTENT_SOURCE_DIR_FREETYPE=${freetype}"
-  "-DFETCHCONTENT_SOURCE_DIR_ZSTD=${zstd}"
-  "-DFETCHCONTENT_SOURCE_DIR_IMGUI=${imgui}"
-  # Cannot overriden with -DFETCHCONTENT, Thus using own CPM implementation
-  "-DCPM_ImGui_SOURCE=${imgui}"
-  "-DFETCHCONTENT_SOURCE_DIR_NFD=${nfd}"
-  "-DFETCHCONTENT_SOURCE_DIR_PPQSORT=${ppqsort}"
-  "-DFETCHCONTENT_SOURCE_DIR_JSON=${json}"
-  "-DFETCHCONTENT_SOURCE_DIR_MD4C=${md4c}"
-  "-DFETCHCONTENT_SOURCE_DIR_BASE64=${base64}"
-  "-DFETCHCONTENT_SOURCE_DIR_TIDY=${tidy}"
-  "-DFETCHCONTENT_SOURCE_DIR_USEARCH=${usearch}"
-  "-DFETCHCONTENT_SOURCE_DIR_PUGIXML=${pugixml}"
-  "-DFETCHCONTENT_SOURCE_DIR_LIBCURL=${libcurl}"
-  "-DFETCHCONTENT_SOURCE_DIR_WAYLAND-PROTOCOLS=${wayland-protocols}"
-]
+  package-project-cmake = fetchFromGitHub {
+    owner = "TheLartians";
+    repo = "PackageProject.cmake";
+    rev = "v1.11.1";
+    hash = "sha256-E7WZSYDlss5bidbiWL1uX41Oh6JxBRtfhYsFU19kzIw=";
+  };
+}
