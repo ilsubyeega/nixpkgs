@@ -41,16 +41,15 @@ in stdenv.mkDerivation rec {
     hash = "sha256-xxT1xy3S5nh9qMjK+4HnaWJnGGO64a1u7eSwvQBLcPY=";
   };
 
-
-
-
-
-
-
-
   patches = lib.optional (
     stdenv.hostPlatform.isDarwin && lib.versionOlder stdenv.hostPlatform.darwinMinVersion "11"
   ) ./dont-use-the-uniformtypeidentifiers-framework.patch;
+
+  postPatch = ''
+    # for imgui, this need to create own directory to get patches.
+
+
+  '';
 
   nativeBuildInputs = [
     cmake

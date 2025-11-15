@@ -28,7 +28,7 @@ let
     owner = "ocornut";
     repo = "imgui";
     rev = "v1.92.1-docking";
-    hash = "sha256-xxT9xy3S5nh9qMjK+cHnaWJnGGO64a1u7eSwvQBLcP2=";
+    hash = "sha256-9nFGXpVj+oWIfuOiXXVJodzc8G1hirSiVCMq6dxFV9o=";
   };
   nfd = fetchFromGitHub {
     owner = "btzy";
@@ -39,8 +39,8 @@ let
   ppqsort = fetchFromGitHub {
     owner = "GabTux";
     repo = "PPQSort";
-    rev = "1.0.5";
-    hash = "sha256-xxT2xy3S5nh9qMjK+aHnaWJnGGO64a1u7eSwvQBLcP2=";
+    rev = "v1.0.5";
+    hash = "sha256-EMZVI/uyzwX5637/rdZuMZoql5FTrsx0ESJMdLVDmfk=";
   };
   json = fetchFromGitHub {
     owner = "nlohmann";
@@ -82,7 +82,7 @@ let
     owner = "curl";
     repo = "curl";
     rev = "curl-8_14_1";
-    hash = "sha256-xxT2xy3S5nh9qMjK+0HnaWJnGGO64a1u7eSwvQBLcP2=";
+    hash = "sha256-H6+Q4Y/JIX3k2Ffyf/DeMx6KCCqSz8dvxIA1WcAc6rk=";
   };
   wayland-protocols = fetchTarball {
     url = "https://gitlab.freedesktop.org/wayland/wayland-protocols/-/archive/1.37/wayland-protocols-1.37.tar.gz";
@@ -90,19 +90,26 @@ let
   };
 in
 [
-  "-DFETCHCONTENT_SOURCE_DIR_capstone=${capstone}"
-  "-DFETCHCONTENT_SOURCE_DIR_glfw=${glfw}"
-  "-DFETCHCONTENT_SOURCE_DIR_freetype=${freetype}"
-  "-DFETCHCONTENT_SOURCE_DIR_zstd=${zstd}"
-  "-DFETCHCONTENT_SOURCE_DIR_ImGui=${imgui}"
-  "-DFETCHCONTENT_SOURCE_DIR_nfd=${nfd}"
-  "-DFETCHCONTENT_SOURCE_DIR_PPQSort=${ppqsort}"
-  "-DFETCHCONTENT_SOURCE_DIR_json=${json}"
-  "-DFETCHCONTENT_SOURCE_DIR_md4c=${md4c}"
-  "-DFETCHCONTENT_SOURCE_DIR_base64=${base64}"
-  "-DFETCHCONTENT_SOURCE_DIR_tidy=${tidy}"
-  "-DFETCHCONTENT_SOURCE_DIR_usearch=${usearch}"
-  "-DFETCHCONTENT_SOURCE_DIR_pugixml=${pugixml}"
-  "-DFETCHCONTENT_SOURCE_DIR_libcurl=${libcurl}"
-  "-DFETCHCONTENT_SOURCE_DIR_wayland-protocols=${wayland-protocols}"
+  "-DFETCHCONTENT_FULLY_DISCONNECTED=ON"
+  "-DFETCHCONTENT_QUIET=OFF"
+  "-DCPM_LOCAL_PACKAGES_ONLY=ON"
+  "-DCPM_DOWNLOAD_ALL=ON"
+  "-DFETCHCONTENT_TRY_FIND_PACKAGE_MODE=ALWAYS"
+  "-DFETCHCONTENT_SOURCE_DIR_CAPSTONE=${capstone}"
+  "-DFETCHCONTENT_SOURCE_DIR_GLFW=${glfw}"
+  "-DFETCHCONTENT_SOURCE_DIR_FREETYPE=${freetype}"
+  "-DFETCHCONTENT_SOURCE_DIR_ZSTD=${zstd}"
+  "-DFETCHCONTENT_SOURCE_DIR_IMGUI=${imgui}"
+  # Cannot overriden with -DFETCHCONTENT, Thus using own CPM implementation
+  "-DCPM_ImGui_SOURCE=${imgui}"
+  "-DFETCHCONTENT_SOURCE_DIR_NFD=${nfd}"
+  "-DFETCHCONTENT_SOURCE_DIR_PPQSORT=${ppqsort}"
+  "-DFETCHCONTENT_SOURCE_DIR_JSON=${json}"
+  "-DFETCHCONTENT_SOURCE_DIR_MD4C=${md4c}"
+  "-DFETCHCONTENT_SOURCE_DIR_BASE64=${base64}"
+  "-DFETCHCONTENT_SOURCE_DIR_TIDY=${tidy}"
+  "-DFETCHCONTENT_SOURCE_DIR_USEARCH=${usearch}"
+  "-DFETCHCONTENT_SOURCE_DIR_PUGIXML=${pugixml}"
+  "-DFETCHCONTENT_SOURCE_DIR_LIBCURL=${libcurl}"
+  "-DFETCHCONTENT_SOURCE_DIR_WAYLAND-PROTOCOLS=${wayland-protocols}"
 ]
